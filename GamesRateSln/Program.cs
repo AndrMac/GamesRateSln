@@ -9,12 +9,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace GamesRateSln
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
@@ -22,7 +23,9 @@ namespace GamesRateSln
                 try
                 {
                     var cx = scope.ServiceProvider.GetRequiredService<AppDataContext>();
-                    cx.Database.Migrate();
+                    await cx.Database.MigrateAsync();
+
+                    await SeedData.EnsureSeedData(scope);
                 }
                 catch (Exception ex)
                 {

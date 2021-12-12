@@ -20,15 +20,17 @@ namespace GameDatabase.Api.Client
     public partial class Client : GameDatabase.Api.Client.ClientBase
     {
         private string _baseUrl = "https://api.rawg.io/api";
+        private string apiKey;
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _requestSettings;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _responseSettings;
 
-        public Client(System.Net.Http.HttpClient httpClient)
+        public Client(System.Net.Http.HttpClient httpClient, string apiKey)
         {
             _httpClient = httpClient;
             _requestSettings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => CreateSerializerSettings(true));
             _responseSettings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => CreateSerializerSettings(false));
+            this.apiKey = apiKey;
         }
 
         private Newtonsoft.Json.JsonSerializerSettings CreateSerializerSettings(bool isRequest)
@@ -460,6 +462,9 @@ namespace GameDatabase.Api.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/games?");
+
+            urlBuilder_.Append(System.Uri.EscapeDataString("key") + "=").Append(System.Uri.EscapeDataString(ConvertToString(apiKey, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+
             if (page != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("page") + "=").Append(System.Uri.EscapeDataString(ConvertToString(page, System.Globalization.CultureInfo.InvariantCulture))).Append("&");

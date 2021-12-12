@@ -2,24 +2,23 @@
 // Copyright (c) Andrejs Macko. All rights reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
 // </copyright>
 
+using AutoMapper;
 using GamesRateSln.Data;
+using GamesRateSln.Extensions;
 using GamesRateSln.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Linq;
 
 namespace GamesRateSln.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
-
-        protected AppDataContext Context { get; }
-
-        public HomeController(ILogger<HomeController> logger, AppDataContext cx)
+        public HomeController(ILogger<HomeController> logger, AppDataContext cx, IMapper mapper)
+            : base(logger, cx, mapper)
         {
-            this._logger = logger;
-            this.Context = cx;
+            this.Logger = logger;
         }
 
         public IActionResult Index()
@@ -30,6 +29,13 @@ namespace GamesRateSln.Controllers
         public IActionResult Privacy()
         {
             return this.View();
+        }
+
+        public JsonResult GetGamesList()
+        {
+            var entities = this.Context.Games;
+            var models = this.Project<GameModel>(entities).Result;
+            return this.Json(models);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -11,7 +11,7 @@ namespace GameDatabase.Api.Client
 {
     public static class DIExtensions
     {
-        public static IServiceCollection AddAPIClient(
+        public static IServiceCollection AddGameAPIClient(
             this IServiceCollection services,
             string baseAddress,
             string apiKey,
@@ -22,7 +22,7 @@ namespace GameDatabase.Api.Client
                 client.BaseAddress = new Uri(baseAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Add("X-Auth-Key", apiKey);
+                client.DefaultRequestHeaders.Add("key", apiKey);
                 if (httpConfig != null)
                 {
                     httpConfig(client);

@@ -43,4 +43,23 @@
     <Folder Include="AppData\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameDatabase.Api.Client\GameDatabase.Api.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

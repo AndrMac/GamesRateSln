@@ -21,7 +21,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-	<Target Name="NSwag" BeforeTargets="PrepareForBuild">
-		<Exec Command="$(NSwagExe_Net50) run client.nswag /variables:Configuration=$(Configuration)" />
-	</Target>
 </Project>
