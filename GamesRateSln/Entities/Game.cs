@@ -13,6 +13,6 @@ namespace GamesRateSln.Entities
 
         public DateTime ReleaseDate { get; set; }
 
-        public ICollection<Rate> Rates { get; set; }
+        public ICollection<Rate> Rates { get; set; } = new List<Rate>();
     }
 }

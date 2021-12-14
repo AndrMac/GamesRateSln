@@ -1,4 +1,5 @@
-﻿function chartWidget(labelsArray, dataArray, ctx, legendId) {
+﻿function chartWidget(labelsArray, dataArray) {
+
     var colors = [
         'rgb(70, 191, 189)',
         'rgb(252, 180, 92)',
@@ -10,11 +11,13 @@
         'rgb(150, 181, 180)',
         'rgb(235, 203, 138)',
         'rgb(94, 65, 149)',
-        /*'rgb(171, 121, 103)',
-        'rgb(134, 175, 18)'*/
+        'rgb(171, 121, 103)',
+        'rgb(134, 175, 18)'
     ];
+
     var labels = labelsArray;
     var data = dataArray;
+
     var bgColor = colors;
     var dataChart = {
         labels: labels,
@@ -63,6 +66,33 @@
             }
         }
     };
-    var ctx = document.getElementById("doughnutChart").getContext("2d");
-    var doughnutChart = new Chart(ctx, config);
+
+    var elem = document.getElementById("doughnutChart");
+    if (elem != null) {
+        
+        var doughnutChart = new Chart(elem, config);
+    }
+}
+
+function topGames(id, asc) {
+    $('#'+id).DataTable({
+        bSort: false,
+        paging: false,
+        searching: false,
+        ajax: {
+            url: 'Home\\GetTop5RatedGamesList?asc='+asc,
+            dataSrc: ''
+        },
+        fixedHeader: true,
+        columns: [
+            {
+                data: "title",
+                title: "Game Title",
+            },
+            {
+                data: "rateCount",
+                title: "Total Rates"
+            }
+        ]
+    });
 }

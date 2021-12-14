@@ -12,6 +12,6 @@ namespace GamesRateSln.Entities
 
         public string Email { get; set; }
 
-        public ICollection<Rate> Rates { get; set; }
+        public ICollection<Rate> Rates { get; set; } = new List<Rate>();
     }
 }

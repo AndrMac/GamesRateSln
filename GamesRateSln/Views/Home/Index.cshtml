@@ -3,41 +3,54 @@
 }
 
 <div class="container">
-    <div class="row">
+    <div id="results-area">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Rates summary</h4>
+                </div>
+                <div class="card-body">
+                    <div class="doughnut">
+                        <div class="doughnutChartContainer">
+                            <canvas id="doughnutChart" height="350"></canvas>
+                        </div>
+                        <div id="legend" class="chart-legend"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Top 5 Rated Games</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-left">
+                        <table id="top-high-game-tbl" class="table table-striped table-bordered" style="width:100%">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Top 5 Un-Rated Games</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-left">
+                        <table id="top-low-game-tbl" class="table table-striped table-bordered" style="width:100%">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-left">
+            <table id="recent-rates-tbl" class="table table-striped table-bordered" style="width:100%">
+            </table>
+        </div>
+    </div>
+    <div id="main-game-tbl-area">
         <div class="text-left">
             <table id="main-game-tbl" class="table table-striped table-bordered" style="width:100%">
             </table>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-3">
-            <div class="text-left">
-                <div class="doughnut">
-                    <div class="doughnutChartContainer">
-                        <canvas id="doughnutChart" height="350"></canvas>
-                    </div>
-                    <div id="legend" class="chart-legend"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="rate-modal" tabindex="-1" aria-labelledby="rate-modal-label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="rate-modal-label">Rate Game</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="modal-data"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

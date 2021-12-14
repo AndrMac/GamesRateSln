@@ -16,6 +16,10 @@ namespace GamesRateSln.Models
 
         public string Year { get; set; }
 
+        public int RateCount { get; set; }
+
+        public int AvrRate { get; set; }
+
         public ICollection<RateModel> Rates { get; set; } = new List<RateModel>();
     }
 }
