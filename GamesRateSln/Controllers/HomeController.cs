@@ -31,6 +31,23 @@ namespace GamesRateSln.Controllers
             return this.View();
         }
 
+        [HttpGet]
+        [Route("Home/AddRate/{id}")]
+        public PartialViewResult AddRate(long id)
+        {
+            var entity = this.Context.Games.ById(id).Result;
+            var model = this.Map<AddRateModel>(entity);
+            return this.PartialView(model);
+        }
+
+        [HttpPost]
+        [Route("Home/AddRate")]
+        public PartialViewResult AddRate(AddRateModel model)
+        {
+            return this.PartialView(model);
+        }
+
+        [HttpGet]
         public JsonResult GetGamesList()
         {
             var entities = this.Context.Games;

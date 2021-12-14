@@ -27,6 +27,15 @@ namespace GamesRateSln.Models.Configuration
             this.CreateMap<PersonModel, Person>(MemberList.Source);
 
             this.CreateMap<RateModel, Rate>(MemberList.Source);
+
+            this.CreateMap<Game, AddRateModel>(MemberList.Destination)
+                .ForMember(dest => dest.GameYear, act => act.MapFrom(src => src.ReleaseDate.Year.ToString()))
+                .ForMember(dest => dest.GameId, act => act.MapFrom(src => src.Id))
+                .ForMember(dest => dest.GameTitle, act => act.MapFrom(src => src.Title))
+                .ForMember(dest => dest.Comment, act => act.Ignore())
+                .ForMember(dest => dest.PersonEmail, act => act.Ignore())
+                .ForMember(dest => dest.PersonName, act => act.Ignore())
+                .ForMember(dest => dest.Value, act => act.Ignore());
         }
     }
 }

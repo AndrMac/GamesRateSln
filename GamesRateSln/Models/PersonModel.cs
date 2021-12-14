@@ -11,5 +11,10 @@ namespace GamesRateSln.Models
 {
     public class PersonModel
     {
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
+        public ICollection<RateModel> Rates { get; set; }
     }
 }

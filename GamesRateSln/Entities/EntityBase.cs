@@ -6,7 +6,7 @@ using System;
 
 namespace GamesRateSln.Entities
 {
-    public class EntityBase
+    public class EntityBase : IEntity
     {
         public long Id { get; set; }
 
